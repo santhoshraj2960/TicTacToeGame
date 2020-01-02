@@ -6,8 +6,9 @@ class TicTacToe(object):
         self.cells_filled = 0
     
     def print_tic_tac_toe_matrix(self):
-        for row in self.tic_tac_toe_matrix:
-            print row
+        print '\n\n'
+        for row in range(0,3):
+            print '|'.join([ele if ele in ['X', 'O'] else '-' for ele in row])
 
     def evaluate_input(self, input, player):
         if len(input.split()) != 2:
@@ -76,6 +77,27 @@ class TicTacToe(object):
                 print 'ret t from check_dia 2'
                 return True
         return False
+
+
+    def insert_x_or_o(self, row, col, x_or_o):
+        row_col_string = str(row) + str(col)
+        self.available_positions_board_dict.pop(row_col_string)
+        print 'avail pos = ', self.available_positions_board_dict.keys()
+        self.tic_tac_toe_board[row][col] = x_or_o
+        self.print_tic_tac_toe()
+
+
+    def check_board_is_full(self):
+        if not self.available_positions_board_dict.keys():
+            print 'Board is full'
+            return False
+        else:
+            return True
+
+
+    def insert_O_in_board(self): #use this function if single player is playing
+        first_avail_pos = self.available_positions_board_dict.keys()[0]
+        self.insert_x_or_o(int(first_avail_pos[0]), int(first_avail_pos[0]), 'O')
 
 
 if __name__ == '__main__':
