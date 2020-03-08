@@ -8,8 +8,16 @@ class TicTacToe(object):
     def print_tic_tac_toe_matrix(self):
         print '\n\n'
         for row in range(0,3):
-            print '|'.join([ele if ele in ['X', 'O'] else '-' for ele in row])
+            row_list = []
+            for col in range(0,3):
+                cell_ele = self.tic_tac_toe_matrix[row][col]
+                if cell_ele in ['X', 'O']:
+                    row_list.append(cell_ele)
+                else:
+                    row_list.append('-')
 
+            print '|'.join(row_list)
+            
     def evaluate_input(self, input, player):
         if len(input.split()) != 2:
             return False, False, True #player_won, Match tied, invalid_ip
@@ -45,7 +53,6 @@ class TicTacToe(object):
             else:
                 break
         if no_of_consecutives == 3:
-            print 'ret t from check_row'
             return True
         else:
             return False
@@ -61,7 +68,6 @@ class TicTacToe(object):
             else:
                 break
         if no_of_consecutives == 3:
-            print 'ret t from check_col'
             return True
 
     def check_diagonal(self, input, player):
@@ -70,11 +76,9 @@ class TicTacToe(object):
         if row_of_input == col_of_input or abs(row_of_input - col_of_input) == 2:
             if self.tic_tac_toe_matrix[0][0] == self.tic_tac_toe_matrix[1][1] == \
             self.tic_tac_toe_matrix[2][2]:
-                print 'ret t from check_dia 1'
                 return True
             elif self.tic_tac_toe_matrix[0][2] == self.tic_tac_toe_matrix[1][1] == \
             self.tic_tac_toe_matrix[2][0]:
-                print 'ret t from check_dia 2'
                 return True
         return False
 
@@ -106,30 +110,32 @@ if __name__ == '__main__':
     
     while(True):
         if player_x:
-            player_x_input = raw_input('Player X enter your choice as rowNumber<space>colNumber: ')
+            player_x_input = raw_input('\n\nPlayer X! Type the cell number you want\
+ to enter X as Row Number <space> Col Number (eg: 0 0): ')
             player_x = 0
             player_won, match_tied, invalid_ip = t.evaluate_input(player_x_input, 'X')
             
             if player_won:
-                print 'Congratulations Player X! You Won'
+                print '\n\nCongratulations Player X, You Won!'
                 break
             elif match_tied:
-                print 'That is a tie'
+                print '\n\nThat is a tie'
                 break
             elif invalid_ip:
                 player_x = 1
-                print 'Invalid Input'
+                print '\n\nInvalid Input'
         else:
-            player_o_input = raw_input('Player O enter your choice as rowNumber<space>colNumber: ')
+            player_o_input = raw_input('\n\nPlayer O! Type the cell number you want\
+ to enter O as Row Number <space> Col Number (eg: 0 0):')
             player_x = 1
             player_won, match_tied, invalid_ip = t.evaluate_input(player_o_input, 'O')
             
             if player_won:
-                print 'Congratulations Player O! You Won'
+                print '\n\nCongratulations Player O, You Won!'
                 break
             elif match_tied:
-                print 'That is a tie'
+                print '\n\nThat is a tie'
                 break
             elif invalid_ip:
                 player_x = 0
-                print 'Invalid Input'
+                print '\n\nInvalid Input'
