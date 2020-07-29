@@ -10,3 +10,6 @@ Player X always starts the game.
 in order to start the game just download the file or clone the directory and run 
 python tic_tac_toe.py
 on your terminal to start the game.
+
+![Image of social media scheduler](https://github.com/santhoshraj2960/TicTacToeGame/blob/master/tic_tac_toe.png)
+![Image of social media scheduler](https://github.com/santhoshraj2960/TicTacToeGame/blob/master/tic_tac_toe_2.png)
